@@ -1,4 +1,4 @@
-# California State University, Bakersfield ― 
+# Advanced Software Engineering, Fall 2018 CSUB
 
 The California State University - Bakersfield fall 2018 advanced software engineering class project.
 
