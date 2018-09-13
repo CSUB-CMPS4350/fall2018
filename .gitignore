@@ -1,0 +1,19 @@
+cmps4350/.DS_Store
+cmps4350/node_modules/
+cmps4350/dist/
+cmps4350/npm-debug.log*
+cmps4350/yarn-debug.log*
+cmps4350/yarn-error.log*
+cmps4350/test/unit/coverage/
+cmps4350/test/e2e/reports/
+cmps4350/selenium-debug.log
+cmps4350/package-lock.json
+cmps4350/# Editor directories and files
+cmps4350/.env
+cmps4350/.idea
+cmps4350/.vscode
+cmps4350/*.suo
+cmps4350/*.ntvs*
+cmps4350/*.njsproj
+cmps4350/*.sln
+/html/
