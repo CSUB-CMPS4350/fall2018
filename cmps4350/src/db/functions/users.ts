@@ -6,7 +6,7 @@ import { UsersFunctions } from '.';
 const sql = sqlProvider.users;
 
 
-class UserFunctions {
+class UsersFunctions {
     constructor(db: any, pgp: IMain) {
         this.db = db;
         this.pgp = pgp;

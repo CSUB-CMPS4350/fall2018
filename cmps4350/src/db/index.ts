@@ -14,7 +14,7 @@ const initOptions: IOptions<IExtensions> = {
 
 const config = {
     host:       process.env.DB_HOST,
-    port:       process.env.PGPORT,
+    port:       parseInt(process.env.PGPORT),
     user:       process.env.PGUSER,
     database:   process.env.PGDATABASE,
     password:   process.env.PGPASSWORD

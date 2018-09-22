@@ -14,7 +14,8 @@
     "baseUrl": "./src"
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "node_modules/@types/bluebird/index.d.ts"
   ],
   "exclude": [
     "node_modules",
