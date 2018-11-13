@@ -1,0 +1,128 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Life Line </title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!--Linking CSS-->
+        <link href="css/style.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="starter-template.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Life-Line</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./home.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./Login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+            </div>
+        </nav>
+
+        <!------ Include the above in your HEAD tag ---------->
+        <center>
+            <form class="form-horizontal" action='' method="POST" onsubmit = "return init(this)">
+                <fieldset>
+                    <div id="legend">
+                        <legend class="">Register</legend>
+                    </div>
+                    <div class="control-group">
+                        <!-- Firstname -->
+                        <label class="control-label"  for="firstname">Firstname</label>
+                        <div class="controls">
+                            <input type="text" id="firstname" name="firstname" placeholder="" class="input-xlarge">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- Lastname -->
+                        <label class="control-label"  for="lastname">Lastname</label>
+                        <div class="controls">
+                            <input type="text" id="lastname" name="lastname" placeholder="" class="input-xlarge">
+                        </div>
+                    </div>
+
+
+                    <div class="control-group">
+                        <!-- E-mail -->
+                        <label class="control-label" for="email">E-mail</label>
+                        <div class="controls">
+                            <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                            <p class="help-block">Please provide your E-mail</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-success">Register</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </center>
+
+        <pre id="output"> Testing... </pre>
+
+        <script> 
+var studentArr = [];
+
+var stuObj = {
+    firstname:firstname,
+    lastname:lastname,
+    email:email
+};
+
+function init(){
+        document.getElementById('output').innerHTML=localStorage.studentRec;
+    if(localStorage.studentRec){
+        studentArr = JSON.parse(localStorage.studentRec);
+        for(var i=0; i<studentArr.length;i++){
+            var firstname = studentArr[i].firstname.value;
+            var lastname = studentArr[i].lastname.value;
+            var email = studentArr[i].email.value;
+        }
+    }
+}
+studentArr.push(stuObj);
+localStorage.studentRec = JSON.stringify(studentArr);
+var html = localStorage.studentRec;
+init();
+
+        </script>
+
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>
+
+
