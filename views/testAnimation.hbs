@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border: 1px solid #d3d3d3;
+    background-color: #33fccf;
+}
+</style>
+</head>
+<body onload="startAnimation()">
+<h1>{{ title }}</h1>
+<script>
+
+var myAnimationPiece = [];
+
+function startAnimation() {
+    for (var i = 0; i < 3; i++) {
+        myAnimationPiece[i] = new component(95*(i+1), 50, 40, 0, 2*Math.PI, "red");
+    }
+    myAnimationArea.start();
+}
+
+var myAnimationArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 800;
+        this.canvas.height = 600;
+        //this.canvas.width = document.documentElement.clientWidth;
+        //this.canvas.height = document.documentElement.clientHeight;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateAnimationArea, 20);        
+    },
+    stop : function() {
+        clearInterval(this.interval);
+    },    
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+function component(x,y,r,startangle,endangle,color,type) {
+    this.type = type;
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.startangle = 0;
+    this.endangle = 2*Math.PI;    
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.gravity = 0.05;
+    this.gravitySpeed = 0;
+    this.update = function() {
+        ctx = myAnimationArea.context;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,r,0,2*Math.PI);
+        ctx.fill();
+        ctx.closePath();
+    }
+    this.newPos = function() {
+        this.gravitySpeed += this.gravity;
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravitySpeed;
+    }
+}
+
+function updateAnimationArea() {
+    myAnimationArea.clear();
+    for(var i = 0; i < 3; i++) {
+        myAnimationPiece[i].newPos();
+        myAnimationPiece[i].update();
+    }
+}
+
+</script>
+
+</body>
+</html>
+

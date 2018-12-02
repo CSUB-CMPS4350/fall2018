@@ -1,0 +1,1 @@
+SELECT ${fieldToReturn~} FROM ${users~} WHERE ${fieldToCheck~} = ${userValue}
