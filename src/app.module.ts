@@ -5,12 +5,12 @@ import { UsersModule } from 'domain/users/users.module';
 import { AuthModule } from 'domain/auth/auth.module';
 import { SecurityController } from './util/security.controller';
 import { SecurityModule } from './util/security.module';
-import { EventsModule } from './socket/events.module';
+//import { EventsModule } from './socket/events.module';
 import { AssessmentsModule } from './domain/assessments/assessments.module';
 import { GuestsModule } from './domain/guests/guests.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, SecurityModule, EventsModule, AssessmentsModule, GuestsModule],
+  imports: [UsersModule, AuthModule, SecurityModule, AssessmentsModule, GuestsModule],
   controllers: [AppController, SecurityController],
   providers: [AppService],
 })

@@ -1,0 +1,140 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1> create the game quiz</h1>
+        <div class="form-field">
+            <label id = "quizTitle">Quiz Title</label>
+            <input id = "quiz" type = "text" name="quiz" autofocus/>
+        </div>
+        <div id="questions">
+            <div id="question-field">
+                <label>Question 1</label>
+                <input type="text" class="question" id="q1" type="text">
+                <br>
+                <label>Answer 1</label>
+                <input id="q1a1" type="text">
+                <br>
+                <label>Answer 2</label>
+                <input id="q1a2" type="text">
+                <br>
+                <label>Answer 3</label>
+                <input id="q1a3" type="text">
+                <br>
+                <label>Answer 4</label>
+                <input id="q1a4" type="text">
+                <br>
+                <label>Correct Answer</label>
+                <input class ="correct" id="correct1" type="number">
+            </div>
+        </div>
+        <button onclick="addQuestion()">Add another question</button>
+        <button onclick="updateQuestiondb()">Create quiz</button>
+
+    </body>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script type="text/javascript">
+        var qnum = 1;
+        var socket = io('http://localhost:4350/');
+  
+        function addQuestion(){
+            qnum++;
+            var oldDiv = document.getElementById('questions');
+            var newDiv = document.createElement('div');
+            
+            oldDiv.appendChild(document.createElement('br'));
+            var questionLa = document.createElement('label');
+            var questionin = document.createElement('input');
+
+            var ansLa1 = document.createElement('label');
+            var ansin1 = document.createElement('input');
+            
+            var ansLa2 = document.createElement('label');
+            var ansin2 = document.createElement('input');
+            
+            var ansLa3 = document.createElement('label');
+            var ansin3 = document.createElement('input');
+            
+            var ansLa4 = document.createElement('label');
+            var ansin4 = document.createElement('input');
+
+            var correctLa = document.createElement('label');
+            var correctin = document.createElement('input');
+
+            questionLa.innerHTML = 'Question ' + qnum.toString();
+            questionin.setAttribute('class', 'question');
+            questionin.setAttribute('id', 'q' + qnum.toString());
+            questionin.setAttribute('type','text');
+
+            ansLa1.innerHTML = "Answer 1 ";
+            ansin1.setAttribute('id', "q" + qnum.toString() + "a1");
+            ansin1.setAttribute('type', 'text');
+            
+            ansLa2.innerHTML = "Answer 2 ";
+            ansin2.setAttribute('id', "q" + qnum.toString() + "a2");
+            ansin2.setAttribute('type', 'text');
+            
+            ansLa3.innerHTML = "Answer 3 ";
+            ansin3.setAttribute('id', "q" + qnum.toString() + "a3");
+            ansin3.setAttribute('type', 'text');
+            
+            ansLa4.innerHTML = "Answer 4 ";
+            ansin4.setAttribute('id', "q" + qnum.toString() + "a4");
+            ansin4.setAttribute('type', 'text');
+            
+            correctLa.innerHTML = "Correct Answer ";
+            correctin.setAttribute('id', 'correct' + qnum.toString());
+            correctin.setAttribute('type', 'number');
+
+            newDiv.setAttribute('id','questions');
+
+            newDiv.appendChild(questionLa);
+            newDiv.appendChild(questionin);
+
+            newDiv.appendChild(ansLa1);
+            newDiv.appendChild(ansin1);
+
+            newDiv.appendChild(ansLa2);
+            newDiv.appendChild(ansin2);
+
+            newDiv.appendChild(ansLa3);
+            newDiv.appendChild(ansin3);
+
+            newDiv.appendChild(ansLa4);
+            newDiv.appendChild(ansin4);
+
+            newDiv.appendChild(correctLa);
+            newDiv.appendChild(correctin);
+
+            oldDiv.appendChild(newDiv);
+        }
+
+        function updateQuestiondb(){
+            var arrayQuestions = [];
+            for (var i =1; i<=qnum;i++){
+                var q = document.getElementById('q'+i).value;
+                var a1 = document.getElementById('q'+ i +'a1').value;
+                var a2 = document.getElementById('q'+ i +'a1').value;
+                var a3 = document.getElementById('q'+ i +'a1').value;
+                var a4 = document.getElementById('q'+ i +'a1').value;
+                var correct = document.getElementById('correct'+ i).value;
+                arrayQuestions.push({
+                    "question": q,
+                    "answers":[a1,a2,a3,a4],
+                    "correct": correct,
+                })
+            }
+            var title = document.getElementById('quiz').value;
+            var quiz = {"title": title, "questions": arrayQuestions, ip: socket.id};   
+            socket.emit('new-quiz', quiz);
+        }
+
+        socket.on('quiz-newly-created',function(data){
+            //window.location.href = "../../" + data
+            console.log("server resopnd");
+            alert("New quiz made");
+        });
+
+    </script>
+
+</html>

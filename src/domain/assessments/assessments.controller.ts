@@ -1,9 +1,10 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Render } from '@nestjs/common';
 import { NewAssessmentDto } from './dto/new.dto';
 const path = require('path');
 import { db } from '../../db/index';
 import { AssessmentsService } from './assessments.service';
 import { JsonArray } from 'dtos/json.dto';
+import { GuestsController } from 'domain/guests/guests.controller';
 
 let crypto = require('crypto');
 let format = require('biguint-format');
@@ -13,6 +14,11 @@ export class AssessmentsController {
     constructor(
         private readonly assessmentsService: AssessmentsService
     ) {}
+
+    @Get('one')
+    getOne()  {
+        db.assessments.getOne();
+    }
 
     @Post('all')
     getAll() {
@@ -76,5 +82,33 @@ export class AssessmentsController {
                 reject(error);
             });
         });
+    }
+
+    /*
+     * Rendering/Front-end Section
+     * -- Renders the appropriate frontend for each path
+     */
+    @Get('/')
+    @Render('assessments/start')
+    start () {
+        return;
+    }
+
+    @Get('/player')
+    @Render('assessments/player')
+    player () {
+        return;
+    }
+
+    @Get('/host')
+    @Render('assessments/host')
+    host () {
+        return;
+    }
+
+    @Get('/creator')
+    @Render('assessments/creator')
+    creator () {
+        return;
     }
 }

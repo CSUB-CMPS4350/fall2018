@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Join a game</h1>
+        <form action="/assessments/player">
+            <div class="playerForm">
+                <label id = "playerLabel">Enter your name</label>
+                <input id = "playerName" type="text" name="name">
+            </div>
+            <br>
+            <div class="playerForm">
+                <label id = "playerLabel">Enter game code</label>
+                <input id = "gameCode" type="number" name="code">
+            </div>
+            <br>
+            <div class="playerForm">
+                <button id = "joinGame"> Join the game </button>
+            </div>
+        </form>
+        <br>
+        <a href = "/assessments/host" id = "host">Click here to hsot a quiz if its initilized.</a>
+        <a href = "/assessments/create" id = "host">Click here to create a quiz.</a>
+    </body>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src = "/vendor/jquery/jquery.min.js"></script>
+    <script src = "/js/deparam.js"></script>
+    <script>
+        //var socket = io();
+    </script>
+</html>

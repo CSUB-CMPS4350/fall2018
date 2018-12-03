@@ -52,6 +52,10 @@ export class AssessmentFunctions {
     get() {
         return this.db.any(sql.get);
     }
+
+    getOne() {
+        return this.db.one(sql.getOne);
+    }
 }
 
 type AssessmentColumnsets = {

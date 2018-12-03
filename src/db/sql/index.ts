@@ -15,7 +15,8 @@ export = {
     assessments: {
         new: sql('assessments/new.sql'),
         findOne: sql('assessments/findOne.sql'),
-        get: sql('assessments/get.sql')
+        get: sql('assessments/get.sql'),
+        getOne: sql('assessments/getOne.sql')
     },
     live_assessments: {
         add: sql('live_assessments/add.sql'),

@@ -35,6 +35,7 @@ export class UsersController {
                 crypto_values.secret = result.toString();
                 Object.assign(user, crypto_values);
                 console.log(user);
+                
                 return db.users.add(user);
             }).then(result => {
                 resolve(result);

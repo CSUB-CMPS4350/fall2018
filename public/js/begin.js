@@ -4,19 +4,19 @@ var chosen_assessment = {
 };
 
 var begin_enabled = false;
-const socket = new WebSocket('ws://localhost:8080');
-socket.onopen = function () {
-    console.log('WebSocket connected');
-    socket.send(JSON.stringify({
-        event: 'events',
-        data: 'test',
-    }));
-    socket.onmessage = function (data) {
-        console.log(data);
-    }
-};
+
 
 $(document).ready(function () {
+    var socket = io('http://localhost:4350/');
+    // Player connected to the server
+    socket.on('connect', () => {
+    console.log('Hellooooo');
+
+        var data = jQuery.deparam(window.location.search)
+        socket.emit('player-join',data);
+        
+    });
+
     var table = $('#assessments_table').DataTable({
 
         "scrollY": "200px",
@@ -66,5 +66,17 @@ $(document).ready(function () {
                 $('#users').text("Connected users: 0");
             }
         });
+
+    })
+
+    $('#tst').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/assessments/one',
+            type: 'get',
+            success: function (response) {
+                console.log(response);
+            }
+        })
     })
 });
