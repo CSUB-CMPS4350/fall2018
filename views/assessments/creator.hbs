@@ -125,7 +125,7 @@
                 })
             }
             var title = document.getElementById('quiz').value;
-            var quiz = {"title": title, "questions": arrayQuestions, ip: socket.id};   
+            var quiz = {"title": title, "questions": arrayQuestions, ip: socket.id};
             socket.emit('new-quiz', quiz);
         }
 

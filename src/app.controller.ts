@@ -40,20 +40,26 @@ export class AppController {
   }
 
   @Get('dashboard')
-  @Render('dashboard')
+  @Render('teacher_dashboard/dashboard')
   dashboard() {
     return;
   }
 
   @Get('begin')
-  @Render('begin')
+  @Render('teacher_dashboard/begin')
   begin() {
     return;
   }
 
   @Get('quiz')
-  @Render('quiz')
+  @Render('teacher_dashboard/quiz')
   quiz() {
+    return;
+  }
+
+  @Get('create_assessment')
+  @Render('teacher_dashboard/create_assessment')
+  create_assessment() {
     return;
   }
 }
