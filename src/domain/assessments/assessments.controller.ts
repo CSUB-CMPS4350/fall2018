@@ -5,6 +5,7 @@ import { db } from '../../db/index';
 import { AssessmentsService } from './assessments.service';
 import { JsonArray } from 'dtos/json.dto';
 import { GuestsController } from 'domain/guests/guests.controller';
+import { NewCategoryDto } from './dto/new-category.dto';
 
 let crypto = require('crypto');
 let format = require('biguint-format');
@@ -47,6 +48,30 @@ export class AssessmentsController {
             });
         });
     }
+
+    @Post('new_assessment_category')
+    newAssessmentCategory(@Body() category: NewCategoryDto) {
+        return new Promise(function (resolve, reject) {
+            db.assessment_categories.insertCategory(category)
+            .then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+
+    @Get('get_assessment_categories')
+    getAssessmentCategories(@Body() page: number): Promise<JsonArray> {
+        return new Promise(function (resolve, reject) {
+            db.assessment_categories.selectByPage(page)
+            .then(result => {
+                resolve(result)
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
 
     @Post('start_assessment')
     startAssessment(@Body() data: JsonArray): Promise<JsonArray> {

@@ -21,6 +21,10 @@ export = {
     live_assessments: {
         add: sql('live_assessments/add.sql'),
         findOnePin: sql('live_assessments/findOnePin.sql')
+    },
+    assessment_categories: {
+        insertCategory: sql('assessment_categories/insert_category.sql'),
+        selectByPage: sql('assessment_categories/select_byN.sql')
     }
 };
 

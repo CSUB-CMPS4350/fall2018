@@ -3,7 +3,7 @@ import {Promise} from 'bluebird';
 
 //let pgp = require('./pgp');
 import {IMain, IDatabase, IOptions} from 'pg-promise';
-import {IExtensions, UsersFunctions, AssessmentFunctions, LiveAssessmentFunctions, GuestUsersFunctions} from './functions';
+import {IExtensions, UsersFunctions, AssessmentFunctions, LiveAssessmentFunctions, GuestUsersFunctions, AssessmentCategoryFunctions} from './functions';
 
 const initOptions: IOptions<IExtensions> = {
     promiseLib: Promise,
@@ -12,6 +12,7 @@ const initOptions: IOptions<IExtensions> = {
         obj.guest_users = new GuestUsersFunctions(obj, pgp);
         obj.assessments = new AssessmentFunctions(obj, pgp);
         obj.live_assessments = new LiveAssessmentFunctions(obj, pgp);
+        obj.assessment_categories = new AssessmentCategoryFunctions(obj, pgp);
     }
 };
 

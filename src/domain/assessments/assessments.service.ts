@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { NewAssessmentDto } from './dto/new.dto';
 import { db } from '../../db/index';
+import { NewCategoryDto } from './dto/new-category.dto';
 
 @Injectable()
 export class AssessmentsService {
@@ -16,4 +17,6 @@ export class AssessmentsService {
         });
     }
 
+    insertAssessmentCategory = (category: NewCategoryDto) => db.assessment_categories.insertCategory(category);
+    
 }
