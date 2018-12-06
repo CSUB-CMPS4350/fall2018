@@ -1,0 +1,19 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h3> Show question...</h3>
+        <button onclick="bclicked()">Next question...</button>
+    </body>
+    <script src = "/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io();
+    
+    function bclicked(){
+
+        socket.emit('next-question');
+
+    }
+    </script>
+</html>
