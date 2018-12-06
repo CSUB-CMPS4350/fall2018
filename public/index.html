@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>SB Admin - Dashboard</title>
+
+        <!-- Bootstrap core CSS-->
+        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom fonts for this template-->
+        <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+        <!-- Page level plugin CSS-->
+        <link href="assets/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="css/sb-admin.css" rel="stylesheet">
+    </head>
+		<div id="conte nt-wrapper">
+		<div class="card">
+			<body class = "text-center">
+				<div class="card-header">
+					<h1 class="h3 mb-3 font-weight-normal text-primary">Join a Game</h1>
+				</div>
+				<div class="card-body">
+					<form action="/player/">
+						<div class="playerForm">
+							<label id = "playerLabel">Enter your name</label>
+							<input id = "playerName" type="text" name="name">
+						</div>
+						<br>
+						<div class="playerForm">
+							<label id = "playerLabel">Enter game code</label>
+							<input id = "gameCode" type="number" name="code">
+						</div>
+						<br>
+						<div class="playerForm">
+							<button class="btn btn" id="joinGame">Join the Game</button>
+						</div>
+					</form>
+					<br>
+					<a href="/host/" class="btn btn-info" class = "btn-primary" role="button" id="host">Host a Quiz</a>
+					<a href="/create/" class="btn btn-info" class = "btn-primary" role="button" id="host">Create a Quiz</a>
+			</body>
+			</div>
+		</div>
+    <script src = "/socket.io/socket.io.js"></script>
+    <script src = "../js/jquery.min.js"></script>
+    <script src = "../js/deparam.js"></script>
+    <script>
+        //var socket = io();
+    </script>
+</html>

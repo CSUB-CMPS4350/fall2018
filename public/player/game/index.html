@@ -1,0 +1,207 @@
+
+<!doctype html>
+<html lang="en">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+* {
+    box-sizing: border-box;
+}
+
+	.button_alg {
+	width: 500px !important;
+	}
+	
+    /* Create two equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .button:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    /* Style the buttons */
+    .btn {
+        border: none;
+        outline: none;
+        padding: 12px 16px;
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #ddd;
+    }
+
+    .btn.active {
+        background-color: #666;
+        color: white;
+    }
+
+    .numberCircle {
+        border-radius: 50%;
+        behavior: url(PIE.htc);
+        /* remove if you don't care about IE8 */
+        width: 70px;
+        height: 70px;
+        padding: 8px;
+        background: #fff;
+        border: 2px solid #666;
+        color: #666;
+        text-align: center;
+        font: 32px Arial, sans-serif;
+    }
+    </style>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Life Line </title>
+
+        <!-- Bootstrap core CSS -->
+        <!-- link href="css/bootstrap.min.css" rel="stylesheet" -->
+        <!--Linking CSS -->
+        <!--link href="css/style.css" rel="stylesheet"-->
+
+        <!-- Custom styles for this template -->
+        <!--link href="starter-template.css" rel="stylesheet"-->
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Life-Line</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./home.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./Login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+            </div>
+        </nav>
+             <div class="numberCircle">
+                <p id="demo"></p>
+            </div>
+            <center>
+            <button type="button" class="btn btn-primary button-alg"><p id="answer1"></p></button>
+            <button type="button" class="btn btn-secondary button-alg"><p id="answer2"></p></button><br></br>
+            <button type="button" class="btn btn-success button-alg"><p id="answer3"></p></button>
+            <button type="button" class="btn btn-danger button-alg"><p id="answer4"></p></button>
+			</center>
+            <div id="btnContainer">
+                <!--<button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button> 
+                    <button class="btn active" onclick="gridView()"><i class="fa fa-th-large"></i> Grid</button>
+                    </div>-->
+                    <br>
+
+                    <!-- Bootstrap core JavaScript
+                        ================================================== -->
+                        <!-- Placed at the end of the document so the pages load faster -->
+                        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                        <!--
+                        <script src="js/bootstrap.min.js"></script>
+                        -->
+                        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>
+
+<script src = "/socket.io/socket.io.js"></script>
+<script>
+// Set the date we're counting down to
+var socket = io();
+
+socket.on('nn',(tmp)=>{
+    //alert("000000")
+    //socket.emit('student-answer', );
+    // Output the result in an element with id="demo"
+    console.log( tmp );
+    document.getElementById("answer1").innerHTML = tmp['answers'][0];  
+    document.getElementById("answer2").innerHTML = tmp['answers'][1];
+    document.getElementById("answer3").innerHTML = tmp['answers'][2];
+    document.getElementById("answer4").innerHTML = tmp['answers'][3];
+    //socket.emit('student-answer', );
+});
+function bClicked(){
+
+};
+var countDownDate = new Date("35").getTime();
+
+// Update the count down every 1 secon
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = seconds + "s ";
+
+    /* If the count down is over, write some text 
+       if (distance < 0) {
+       clearInterval(x);
+       document.getElementById("demo").innerHTML = "EXPIRED";
+       }*/
+}, 1000);
+
+// Get the elements with class="column"
+var elements = document.getElementsByClassName("column");
+
+// Declare a loop variable
+var i;
+
+// List View
+function listView() {
+    for (i = 0; i < elements.length; i++) {
+        elements[i].style.width = "100%";
+    }
+}
+
+// Grid View
+function gridView() {
+    for (i = 0; i < elements.length; i++) {
+        elements[i].style.width = "50%";
+    }
+}
+
+/* Optional: Add active class to the current button (highlight it) */
+var container = document.getElementById("btnContainer");
+var btns = container.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function(){
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+    });
+}
+</script>
