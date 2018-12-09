@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lifeline - Dashboard</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+	
+	<style>
+	header {
+		background-color: #3399ff;
+		padding: 30px;
+		text-align: center;
+		font-size: 35px;
+		color: yellow;
+	}
+	
+	label.dotted {
+		border-style: dotted;
+	}
+	label.double {
+		border-style: double;
+	}
+	label.insert {
+		border-style:insert;
+	}
+	header.solid {
+		border-style: solid;
+		border-color: black;
+	}
+	</style>
+</head>
+
+<body class="bgcolor"><nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+    <a class="navbar-brand mr-1" href="index.html">Lifeline</a>
+
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navbar Search -->
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Navbar -->
+    <ul class="navbar-nav ml-auto ml-md-0">
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle fa-fw"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+        </div>
+      </li>
+    </ul>
+
+  </nav>
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Home</span>
+        </a>
+      </li>
+    </ul>
+
+    <div id="content-wrapper">
+
+      <!-- Main Body -->
+        <header class="solid">
+  <h1> create the game quiz</h1>
+        </header>
+        <br>
+        <div class="form-field">
+            <label id = "quizTitle" class="double">Quiz Title</label>
+            <input id = "quiz" type = "text" name="quiz" autofocus/>
+        </div>
+        <div id="questions">
+            <div id="question-field">
+                <label class="double">Question 1</label>
+                <input type="text" class="question" id="q1" type="text">
+                <br>
+                <label class="dotted">Answer 1</label>
+                <input id="q1a1" type="text">
+                <br>
+                <label class="dotted">Answer 2</label>
+                <input id="q1a2" type="text">
+                <br>
+                <label class="dotted">Answer 3</label>
+                <input id="q1a3" type="text">
+                <br>
+                <label class="dotted">Answer 4</label>
+                <input id="q1a4" type="text">
+                <br>
+                <label class="insert">Correct Answer</label>
+                <input class ="correct" id="correct1" type="number">
+            </div>
+        </div>
+        <button onclick="addQuestion()">Add another question</button>
+        <button onclick="updateQuestiondb()">Create quiz</button>
+      <!-- End Main Body -->
+
+
+
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright © Lifeline 2018</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- functions for the page -->
+	<script src = "../socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+	  var qnum = 1;
+        var socket = io();
+
+        function addQuestion(){
+            qnum++;
+            var oldDiv = document.getElementById('questions');
+            var newDiv = document.createElement('div');
+
+            oldDiv.appendChild(document.createElement('br'));
+            var questionLa = document.createElement('label');
+            var questionin = document.createElement('input');
+
+            var ansLa1 = document.createElement('label');
+            var ansin1 = document.createElement('input');
+
+            var ansLa2 = document.createElement('label');
+            var ansin2 = document.createElement('input');
+
+            var ansLa3 = document.createElement('label');
+            var ansin3 = document.createElement('input');
+
+            var ansLa4 = document.createElement('label');
+            var ansin4 = document.createElement('input');
+
+            var correctLa = document.createElement('label');
+            var correctin = document.createElement('input');
+
+            questionLa.innerHTML = 'Question ' + qnum.toString();
+            questionin.setAttribute('class', 'question');
+            questionin.setAttribute('id', 'q' + qnum.toString());
+            questionin.setAttribute('type','text');
+
+            ansLa1.innerHTML = "Answer 1 ";
+            ansin1.setAttribute('id', "q" + qnum.toString() + "a1");
+            ansin1.setAttribute('type', 'text');
+
+            ansLa2.innerHTML = "Answer 2 ";
+            ansin2.setAttribute('id', "q" + qnum.toString() + "a2");
+            ansin2.setAttribute('type', 'text');
+
+            ansLa3.innerHTML = "Answer 3 ";
+            ansin3.setAttribute('id', "q" + qnum.toString() + "a3");
+            ansin3.setAttribute('type', 'text');
+
+            ansLa4.innerHTML = "Answer 4 ";
+            ansin4.setAttribute('id', "q" + qnum.toString() + "a4");
+            ansin4.setAttribute('type', 'text');
+
+            correctLa.innerHTML = "Correct Answer ";
+            correctin.setAttribute('id', 'correct' + qnum.toString());
+            correctin.setAttribute('type', 'number');
+			
+			newDiv.setAttribute('id','questions');
+
+            newDiv.appendChild(questionLa);
+            newDiv.appendChild(questionin);
+
+            newDiv.appendChild(ansLa1);
+            newDiv.appendChild(ansin1);
+
+            newDiv.appendChild(ansLa2);
+            newDiv.appendChild(ansin2);
+
+            newDiv.appendChild(ansLa3);
+            newDiv.appendChild(ansin3);
+
+            newDiv.appendChild(ansLa4);
+            newDiv.appendChild(ansin4);
+
+            newDiv.appendChild(correctLa);
+            newDiv.appendChild(correctin);
+
+            oldDiv.appendChild(newDiv);
+        }
+
+        function updateQuestiondb(){
+            var arrayQuestions = [];
+            for (var i =1; i<=qnum;i++){
+                var q = document.getElementById('q'+i).value;
+                var a1 = document.getElementById('q'+ i +'a1').value;
+                var a2 = document.getElementById('q'+ i +'a1').value;
+                var a3 = document.getElementById('q'+ i +'a1').value;
+                var a4 = document.getElementById('q'+ i +'a1').value;
+                var correct = document.getElementById('correct'+ i).value;
+                arrayQuestions.push({
+                    "question": q,
+                    "answers":[a1,a2,a3,a4],
+                    "correct": correct,
+                })
+            }
+            var title = document.getElementById('quiz').value;
+            var quiz = {"title": title, "questions": arrayQuestions, ip: socket.id};
+            socket.emit('new-quiz', quiz);
+        }
+
+        socket.on('quiz-newly-created',function(data){
+            //window.location.href = "../../" + data
+            console.log("server resopnd");
+            alert("New quiz made");
+        });
+	</script>
+</body>
+
+</html>

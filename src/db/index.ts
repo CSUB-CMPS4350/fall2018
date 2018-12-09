@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 import {Promise} from 'bluebird';
 
@@ -28,5 +29,7 @@ import * as pgPromise from 'pg-promise';
 
 const pgp: IMain = pgPromise(initOptions);
 const db = <IDatabase<IExtensions> & IExtensions>pgp(config);
+
+console.log(process.env.PGPASSWORD)
 
 export {db, pgp};

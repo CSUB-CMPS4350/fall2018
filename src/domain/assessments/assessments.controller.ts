@@ -119,6 +119,12 @@ export class AssessmentsController {
         return;
     }
 
+    @Get('/create_assessment')
+    @Render('teacher_dashboard/create_assessment')
+    create_assessment() {
+        return;
+    }
+
     @Get('/player')
     @Render('assessments/player')
     player () {

@@ -46,7 +46,9 @@ server.use(session({
 
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule, server);
+const app = await NestFactory.create(AppModule, server);
+    console.log(process.env.PGPASSWORD)
+
     app.use(function (req, res, next) {
 
         // Website you wish to allow to connect
@@ -126,7 +128,7 @@ async function bootstrap() {
             console.log("New quiz sent to server " + quiz.ip);
             // And start quiz
             socket.emit('quiz-newly-created', quiz);
-            console.log("New quiz sent to server " + quiz.ip);
+            for (var obj in quiz.questions) console.log(obj);
 
         });
         // Show score
