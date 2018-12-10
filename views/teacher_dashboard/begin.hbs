@@ -76,6 +76,24 @@
       <div id="content-wrapper">
 
         <!-- Main Body -->
+        <!--qr stuff-->
+        <div id="qrcode" style="width:200px; height:200px; margin:15px;"></div>
+		<script type="text/javascript" src="../assets/js/qrcode.min.js"></script>
+		<script type="text/javascript">
+			var qrcode = new QRCode(document.getElementById("qrcode"), {
+				width : 200,
+				height : 200
+			});
+			function makeCode () {		
+				var elText = window.location.href;
+	
+				qrcode.makeCode(elText);
+			}
+		
+			makeCode();
+		</script>
+		
+		
         <div id="main-body" class="container-fluid h-100">
           <div class="row justify-content-center align-items-center h-50">
             <div class="col justify-content-center align-items-center">
