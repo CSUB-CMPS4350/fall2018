@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+</head>
+
+<body>
+    <button type="button" class="btn btn-primary" onclick="getNumbers()">Numbers</button>
+    <button type="button" class="btn btn-primary" onclick="createAssessment()">Create Session</button>
+    <button id="start_session" type="button" class="btn btn-primary">Start Session</button>
+    <input id="assessment_uuid" type="text" class="form-control" placeholder="Assessment uuid">
+    <button id="join_session" type="button" class="btn btn-primary">Start Session</button>
+    <input id="pin" type="text" class="form-control" placeholder="Assessment uuid">
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script>
+    console.log("Previous uuid session: " + localStorage.session_uuid);
+    const socket = new WebSocket('ws://localhost:8080');
+    socket.onopen = function () {
+        console.log('Connected');
+        socket.send(JSON.stringify({
+            event: 'events',
+            data: 'test',
+        }));
+        socket.onmessage = function (data) {
+            console.log(data);
+        }
+    };
+    getNumbers = function () {
+        socket.send(JSON.stringify({
+            event: 'random_numbers',
+            data: 'get',
+        }));
+        socket.onmessage = function (response) {
+            console.log(response.data);
+        }
+    }
+
+    createAssessment = function (numbers) {
+        socket.send(JSON.stringify({
+            event: 'create_assessment',
+            data: {
+                name: 'test',
+                description: 'test session',
+                json_structure: '{}'
+            }
+        }));
+        socket.onmessage = function (response) {
+            data = JSON.parse(response.data);
+            console.log(typeof (data) + " | " + JSON.stringify(data));
+            if (data.uuid)
+                localStorage.session_uuid = data.uuid;
+        }
+    }
+
+    $(document).ready(function () {
+        $('#start_session').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/assessments/start_assessment',
+                type: 'post',
+                data: {
+                    assessment_uuid: $('#assessment_uuid').val()
+                },
+                success: function (response) {
+                    //whatever you wanna do after the form is successfully submitted
+                    console.log(response);
+                }
+            });
+        });
+        
+        $('#join_session').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/guests/join',
+                type: 'post',
+                data: {
+                    assessment_pin: $('#pin').val(),
+                    tag: 'dvaughan'
+                },
+                success: function (response) {
+                    //whatever you wanna do after the form is successfully submitted
+                    console.log(response);
+                }
+            });
+        });
+    })
+
+
+</script>
+
+</html>

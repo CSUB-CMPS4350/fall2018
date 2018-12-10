@@ -1,0 +1,53 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1 id="gameCODE"></h1>
+        <br>
+        <textarea id="display-players" value=""></textarea>
+        <br>
+        <button id="start" onclick="startGame()">Start Game</button>
+    </body>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src = "/vendor/jquery/jquery.min.js"></script>
+    <script src = "/js/deparam.js"></script>
+    <script>
+    var socket = io('http://localhost:4350/');
+    var data = jQuery.deparam(window.location.search);
+
+    socket.on('connect', function(){
+ 
+        console.log("Im a host "+ JSON.stringify(data));
+        socket.emit('host-join',data);
+        //window.location.href = "/";
+    });
+
+    socket.on('show-code', (data)=>{
+        document.getElementById('gameCODE').innerHTML = data.code;
+    });
+
+    socket.on('update-player-list',(data)=>{
+        console.log('Player ' + data + " joined");
+        document.getElementById('display-players').value = "";
+        for ( var i =0; i < data.length; i++){
+            //console.log('Player ' + data + " joined");
+            document.getElementById('display-players').value += data[i]+"\n";   
+        }
+    });
+
+    // Tell server to start the game
+    function startGame(){
+        socket.emit('start-game');
+    }
+
+    // Once server start the game
+    socket.on('game-started', (id) =>{
+        console.log('Game-started');
+        window.location.href = "./game/";
+    });
+
+    socket.on('game-not-found', ()=>{
+        window.location.href = "/" ; //redirect user to main page
+    });
+    </script>
+</html>

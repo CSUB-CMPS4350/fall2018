@@ -1,0 +1,30 @@
+<html>
+    <head>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <h1> Waiting for game to start</h1>
+    </body>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src = "/vendor/jquery/jquery.min.js"></script>
+    <script src = "/js/deparam.js"></script>
+    <script>
+        var socket = io('http://localhost:4350/');
+        // Player connected to the server
+        socket.on('connect', () => {
+        console.log('Hellooooo');
+
+            var data = jQuery.deparam(window.location.search)
+            socket.emit('player-join',data);
+        });
+
+        socket.on('player-join-game', ()=>{
+            window.location.href = "/player/game/" + "?id=" + socket.id;
+        });
+
+        socket.on('game-started', (id) =>{
+        console.log('Game-started');
+        window.location.href = "./game/";
+    });
+    </script>
+</html>
