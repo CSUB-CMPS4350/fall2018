@@ -62,4 +62,11 @@ export class AppController {
   create_assessment() {
     return;
   }
+
+  @Get('game')
+  @Render('game.hbs')
+  game() {
+    return;
+  }
+
 }
