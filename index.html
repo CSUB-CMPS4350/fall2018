@@ -67,26 +67,22 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Pages</span>
+                    </a>
             </ul>
 
             <div id="content-wrapper">
                 <div class="card">
                     <body class = "text-center">
-                        <h1 class="h3 mb-3 font-weight-normal text-primary">Players Currently in..</h1>
+                        <h1 class="h3 mb-3 font-weight-normal text-primary">Waiting for game to start...</h1>
                 </div>
                 <div class="card-body">
                     <body>
-                        <h1 id="gameCODE"></h1>
-                        <br>
-                        <div class="md-form">
-                              <i class="fa fa-pencil prefix"></i>
-                                <textarea type="text" id="form10" class="md-textarea form-control" rows="3"></textarea>
-                                  <label for="form10"></label>
-                        </div>
-                        <!--<textarea id="display-players" rows = "20" cols = "60"  value=""></textarea>-->
-                        <br>
-                        <button id="start" onclick="startGame()">Start Game</button>
-                    </body>
+                        <i class="fa fa-spinner fa-pulse fa-10x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
                     </body>
                 </div>
             </div>
