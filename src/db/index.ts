@@ -4,7 +4,7 @@ import {Promise} from 'bluebird';
 
 //let pgp = require('./pgp');
 import {IMain, IDatabase, IOptions} from 'pg-promise';
-import {IExtensions, UsersFunctions, AssessmentFunctions, LiveAssessmentFunctions, GuestUsersFunctions, AssessmentCategoryFunctions} from './functions';
+import {IExtensions, UsersFunctions, AssessmentFunctions, LiveAssessmentFunctions, GuestUsersFunctions, AssessmentCategoryFunctions, AssessmentQuestionFunctions} from './functions';
 
 const initOptions: IOptions<IExtensions> = {
     promiseLib: Promise,
@@ -14,6 +14,7 @@ const initOptions: IOptions<IExtensions> = {
         obj.assessments = new AssessmentFunctions(obj, pgp);
         obj.live_assessments = new LiveAssessmentFunctions(obj, pgp);
         obj.assessment_categories = new AssessmentCategoryFunctions(obj, pgp);
+        obj.assessment_questions = new AssessmentQuestionFunctions(obj, pgp);
     }
 };
 

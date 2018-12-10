@@ -25,6 +25,9 @@ export = {
     assessment_categories: {
         insertCategory: sql('assessment_categories/insert_category.sql'),
         selectByPage: sql('assessment_categories/select_byN.sql')
+    },
+    assessment_questions: {
+        insertQuestion: sql('assessment_questions/insert_question.sql')
     }
 };
 

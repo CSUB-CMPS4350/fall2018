@@ -3,6 +3,7 @@ import {AssessmentFunctions} from './assessments';
 import { LiveAssessmentFunctions } from './live_assessments';
 import { GuestUsersFunctions } from './guest_users';
 import { AssessmentCategoryFunctions } from './assessment_categories';
+import { AssessmentQuestionFunctions } from './assessment_questions';
 
 // Database Interface Extensions:
 interface IExtensions {
@@ -11,6 +12,7 @@ interface IExtensions {
     assessments: AssessmentFunctions,
     live_assessments: LiveAssessmentFunctions,
     assessment_categories: AssessmentCategoryFunctions
+    assessment_questions: AssessmentQuestionFunctions
 }
 
 export {
@@ -19,5 +21,6 @@ export {
     GuestUsersFunctions,
     AssessmentFunctions,
     LiveAssessmentFunctions,
-    AssessmentCategoryFunctions
+    AssessmentCategoryFunctions,
+    AssessmentQuestionFunctions
 };
