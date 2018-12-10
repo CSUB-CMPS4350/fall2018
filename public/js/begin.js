@@ -4,10 +4,17 @@ var chosen_assessment = {
 };
 
 var begin_enabled = false;
+var connected_users = 0;
 
 
 $(document).ready(function () {
-    var socket = io('http://localhost:4350/');
+    /* QRCode stuff */
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width : 200,
+        height : 200
+    });
+
+    var socket = io('http://api.campuscode.host/');
     // Player connected to the server
     socket.on('connect', () => {
     console.log('Hellooooo');
@@ -16,6 +23,10 @@ $(document).ready(function () {
         socket.emit('player-join',data);
         
     });
+    socket.on('player-joined-quiz', function(player)) {
+        connected_users++;
+        $('#users').text("Connected users: "+connected_users);
+    }
 
     var table = $('#assessments_table').DataTable({
 
@@ -66,6 +77,7 @@ $(document).ready(function () {
                 $('#users').text("Connected users: 0");
             }
         });
+        qrcode.makeCode('http://api.campuscode.host/game/'+chosen_assessment.pin);
 
     })
 
@@ -79,4 +91,7 @@ $(document).ready(function () {
             }
         })
     })
+
 });
+
+

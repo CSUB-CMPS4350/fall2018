@@ -39,8 +39,9 @@ export class AssessmentsController {
 
     @Post('new')
     create(@Body() assessment: NewAssessmentDto) {
+        let that = this;
         return new Promise(function (resolve, reject) {
-            this.assessmentsService.create(assessment)
+            that.assessmentsService.create(assessment)
             .then(result => {
                 resolve(result)
             }).catch(error => {

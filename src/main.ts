@@ -86,6 +86,8 @@ const app = await NestFactory.create(AppModule, server);
     io = socketio.listen(await app.listen(4350));
 
     var playername = [];
+
+    var players = [];
     io.sockets.on('connection', function(socket) {
 
         // Someone joined host page
@@ -97,8 +99,6 @@ const app = await NestFactory.create(AppModule, server);
         socket.on('player-join', function (data) { // data passed in the url
             //console.log(data.playerName);
             //console.log(data.gameCode);
-            console.log(data.name);
-            console.log(data.code);
             playername.push(data.name);
             socket.broadcast.emit('update-player-list', playername);
         });
@@ -126,15 +126,37 @@ const app = await NestFactory.create(AppModule, server);
         // Host create a new quiz
         socket.on('new-quiz', function (quiz) {
             console.log("New quiz sent to server " + quiz.ip);
+            console.log(JSON.stringify(quiz));
+            for (var obj in quiz) console.log(obj);
             // And start quiz
             socket.emit('quiz-newly-created', quiz);
-            for (var obj in quiz.questions) console.log(obj);
 
         });
         // Show score
         socket.on('show-score', function(players){
 
         });
+
+        socket.on('launch-quiz', function(quiz) {
+            
+        });
+
+        socket.on('join-quiz', function(player_data) {
+            var player = {
+                name: player_data.name,
+                game: player_data.pin,
+                id: player_data.id,
+                game_responses: []
+            };
+            players.push(player);
+            console.log(JSON.stringify(player));
+
+            var p = {
+                name: player_data.name,
+                game: player_data.pin
+            }
+            socket.emit('player-joined-quiz', function(p) {});
+        })
     });
 }
 

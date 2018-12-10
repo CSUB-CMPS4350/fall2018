@@ -8,9 +8,10 @@ import { SecurityModule } from './util/security.module';
 //import { EventsModule } from './socket/events.module';
 import { AssessmentsModule } from './domain/assessments/assessments.module';
 import { GuestsModule } from './domain/guests/guests.module';
+import { GameModule } from './domain/game/game.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, SecurityModule, AssessmentsModule, GuestsModule],
+  imports: [UsersModule, AuthModule, SecurityModule, AssessmentsModule, GuestsModule, GameModule],
   controllers: [AppController, SecurityController],
   providers: [AppService],
 })

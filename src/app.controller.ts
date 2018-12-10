@@ -64,7 +64,7 @@ export class AppController {
   }
 
   @Get('game')
-  @Render('game.hbs')
+  @Render('ed_quiz.hbs')
   game() {
     return;
   }

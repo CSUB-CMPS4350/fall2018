@@ -37,8 +37,8 @@ export class AssessmentQuestionFunctions {
     }
 
     
-    find(values: any) {
-        return this.db.oneOrNone(sql.find, values);
+    insertQuestion(values: any) {
+        return this.db.one(sql.insertQuestion, values);
     }
 }
 
