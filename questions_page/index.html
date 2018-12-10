@@ -40,8 +40,8 @@
              <div class="numberCircle">
                 <p id="demo"></p>
             </div>
- <h2>Question # 1</h2>
-    <p style="margin: 50px 0px;font-size: 50px;border-style: solid;border-color: #E50000; border-fill: #eeff33">This will be where the question goes?</p>
+ <h2>Question</h2>
+    <p id="question" style="margin: 50px 0px;font-size: 50px;border-style: solid;border-color: #E50000; border-fill: #eeff33"></p>
             <center>
             <button type="button" class="btn btn-primary button-alg">answer 1: <p id="answer1"></p></button>
             <button type="button" class="btn btn-secondary button-alg">answer 2: <p id="answer2"></p></button><br><br>
@@ -75,6 +75,7 @@ socket.on('nn',(tmp)=>{
     //socket.emit('student-answer', );
     // Output the result in an element with id="demo"
     console.log( tmp );
+    document.getElementById("question").innerHTML = tmp['question'];
     document.getElementById("answer1").innerHTML = tmp['answers'][0];  
     document.getElementById("answer2").innerHTML = tmp['answers'][1];
     document.getElementById("answer3").innerHTML = tmp['answers'][2];
